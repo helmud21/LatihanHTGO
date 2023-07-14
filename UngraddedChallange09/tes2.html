@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Registrasi</h1>
+
+    <form action="" id="registrationForm" onsubmit="validateForm(event)">
+        <label for="name">Nama:</label>
+        <input type="text" id="name">
+        <br>
+        <label for="email">Email:</label>
+        <input type="text" id="email">
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password">
+        <br>
+        <label for="confirmPassword">Konfirmasi Password:</label>
+        <input type="password" id="confirmPassword">
+        <br>
+        <label for="phone">Nomor Telepon:</label>
+        <input type="password" id="phone">
+        <br>
+        <input type="submit" value="Daftar">
+        <br>
+    </form>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+
+            var errorMessages = document.getElementsByClassName("error")
+            for (var i=0; i<errorMessages.length; i++) {
+                errorMessages[i].remove()
+            }
+
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var phone = document.getElementById("phone").value;
+
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+            var phoneRegex = /^\d{10,}$/
+            if (name.trim()==='') {
+                displayError('name', 'Nama tidak boleh kosong');
+                return;
+            }
+
+            if (!emailRegex.test(email)){
+                displayError('email', 'Email tidak valid');
+                return;
+            }
+
+            if (!passwordRegex.test(password)) {
+                displayError('password', 'Password harus terdiri dari minimal 8 karakter dan mengandung huruf dan angka');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                displayError('confirmPassword', 'Konfirmasi password tidak cocok');
+                return;
+            }
+
+            if (!phoneRegex.test(phone)) {
+                displayError('phone', 'Nomor telepon tidak valid');
+                return;
+            }
+
+            alert ('Form registrasi berhasil');
+
+            function displayError(fieldId, message) {
+                var field = document.getElementById(fieldId)
+                var errorContainer = document.createElement('span')
+                errorContainer.className = 'error'
+                errorContainer.textContent = message;
+                field.insertAdjacentHTML('afterend', errorContainer.outerHTML + '<br')
+            }
+        }
+    </script>
+</body>
+</html>

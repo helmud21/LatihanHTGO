@@ -1,0 +1,19 @@
+CREATE TABLE karyawan (
+    nik INT (15) NOT NULL PRIMARY KEY,
+    id_departemen INT NOT NULL,
+    nama_depan VARCHAR (20) NOT NULL,
+    nama_belakang VARCHAR (50) NOT NULL,
+    jenis_kelamin VARCHAR (10) NOT NULL,
+    email VARCHAR (255) NOT NULL,
+    no_telepon INT (20) NOT NULL,
+    FOREIGN KEY (id_departemen) REFERENCES departemen(id_departemen)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+CREATE TABLE departemen (
+    id_departemen INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nama_departemen VARCHAR (100) NOT NULL
+);
+
+INSERT INTO Students VALUES (1, 'John Doe', 18, )
