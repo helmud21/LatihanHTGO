@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    console.log("Kasus pertama\n");
+    function tentukanDeretGeometri(arr) {
+        let arrLength = arr.length;
+        let rasio = [];
+
+        for (i = 0; i < arrLength - 1; i++) {
+            rasio.push(arr[i + 1] / arr[i]);
+        }
+
+        for (i = 0; i < arrLength; i++) {
+            for (j = 0; j < arrLength; j++) {
+                if (rasio[j] != rasio[j + 1]) {
+                    return console.log("false");
+                } else {
+                    return console.log("true");
+                }
+            }
+        }
+    }
+    // let array = [1, 3, 9, 27, 81];
+    let array = [2, 4, 8, 16, 32];
+    // let array = [2, 4, 6, 8];
+    tentukanDeretGeometri(array);
+
+    console.log("\nKasus kedua\n")
+    var angka = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var genap = [], ganjil = [], kelipatan3 = [];
+
+    function mengelompokanAngka(angka) {
+        var p = angka.length
+
+        for (var i = 0; i <= p; i++) {
+            if (angka[i] % 3 == 0) {
+                kelipatan3.push(angka[i]);
+            } else if (angka[i] % 2 == 1) {
+                ganjil.push(angka[i]);
+            } else if (angka[i] % 2 == 0) {
+                genap.push(angka[i]);
+            }
+        }
+        console.log("[ [ " + genap + " ], [ " + ganjil + " ], [ " + kelipatan3 + " ] ]");
+    }
+    mengelompokanAngka(angka);
+
+
+    console.log("\n\nKasus ketiga");
+    var person = ["Lukman", "Adam", "Dimas", "Hansin", "Orion"];
+    var personCheck = [];
+    var kursi = "Kursi Kosong";
+    var column = 4;
+
+    function sittingArrangement(person, column) {
+        let p = person.length, indexPerson = -1;
+        let r = Math.ceil(p / column);
+        let l = r * column;
+        let selisih = l-p;
+        let newArr = [];
+        let arrPerson = new Array(column);
+        for (i=0; i<p; i++) {
+            newArr.push(person[i]);
+        }
+        
+        for (i=0; i<selisih; i++) {
+            newArr.splice(p, 0, "Kursi Kosong");
+        }
+
+        if (column <= 0) {
+            console.log("Invalid number");
+        } else {
+            for (i = 0; i < r; i++) {
+                arrPerson[i] = [];
+                for (j = 0; j < column; j++) {
+                    indexPerson++;
+                    arrPerson[i][j] = newArr[indexPerson];
+                }
+                console.log(arrPerson[i]);
+            }
+        }
+    }
+    sittingArrangement(person, column);
+
+
+    console.log("\n\nKasus keempat");
+    function ladder(word) {
+        var convertWord = word.split('');
+        var p = convertWord.length;
+        console.log(convertWord);
+
+        for (i = 0; i < p - 1; i++) {
+            convertWord.pop();
+            console.log(convertWord);
+        }
+    }
+    let word = "programming";
+    ladder(word);
+
+
+    console.log("\n\nKasus kelima");
+    function targetTerdekat(arr) {
+        let arrLength = arr.length;
+        let o = [], x = [], result = [];
+        let xLength, terkecil = [];
+
+        for (i = 0; i <= arrLength; i++) {
+            if (arr[i] == 'o') {
+                o.push(i);
+            } else if (arr[i] == 'x') {
+                x.push(i);
+            }
+        }
+
+        if (x == '') {
+            return console.log(0);
+        }
+
+        xLength = x.length;
+        for (i = 0; i < xLength; i++) {
+            result.push(Math.abs(o[0] - x[i]));
+        }
+        result.sort(function(a, b){
+            return a-b;
+        });
+        terkecil = result[0];
+        console.log("ini nilai terkecil : \n" + terkecil);
+    }
+
+    // let kasus = [' ', ' ', 'o', ' ', ' ', 'x', ' ', 'x'];
+    // let kasus = ['o', ' ', ' ', ' ', 'x', 'x', 'x'];
+    let kasus = ['x', ' ', ' ', ' ', 'x', 'x', 'o', ' '];
+    // let kasus = [' ', ' ', 'o', ' '];
+    targetTerdekat(kasus);
+
+
+    console.log("\n\nUngraded Challange 10");
+    function graduates(students) {
+        var foxes = {};
+        var wolves = {};
+
+        students.forEach(function (student) {
+            if (student.score > 75 && student.class === "wolves") {
+                wolves = student;
+            } else if (student.score > 75 && student.class === "foxes") {
+                foxes = student;
+            }
+        })
+        console.log(foxes);
+        console.log(wolves);
+    }
+    graduates([
+        {
+            name: "Dimitri",
+            score: 90,
+            class: "foxes"
+        },
+        {
+            name: "Alexei",
+            score: 85,
+            class: "wolves"
+        },
+        {
+            name: "Sergei",
+            score: 74,
+            class: "foxes"
+        },
+        {
+            name: "Anastasia",
+            score: 78,
+            class: "wolves"
+        },
+
+    ])
+
+</script>
+
+</html>
+
+

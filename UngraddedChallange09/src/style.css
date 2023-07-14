@@ -1,0 +1,12 @@
+
+.tooltip-wrapper {
+    position: relative;
+    background-color: aqua;
+    width: 100%;
+    height: 200px;
+}
+
+.soal-4 ul li{
+    list-style-type: "/";
+    display: flex;
+}
